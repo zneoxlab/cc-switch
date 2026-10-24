@@ -911,10 +911,7 @@ enum TrayUsageSource {
 
 /// 这一行/这个应用当前用的是不是 Codex 官方订阅（托管账号或 CLI 登录）：
 /// 是的话托盘面板要显示社区重置预测。
-fn is_codex_official_source(
-    app_type: &AppType,
-    source: Option<&TrayUsageSource>,
-) -> bool {
+fn is_codex_official_source(app_type: &AppType, source: Option<&TrayUsageSource>) -> bool {
     *app_type == AppType::Codex
         && matches!(
             source,

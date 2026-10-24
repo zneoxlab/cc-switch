@@ -281,7 +281,10 @@ mod tests {
 
         // 给前端的字段是 camelCase
         let json = serde_json::to_value(&status).expect("serialize");
-        assert_eq!(json["latestReset"]["announcedAt"], "2026-10-23T17:00:00.000Z");
+        assert_eq!(
+            json["latestReset"]["announcedAt"],
+            "2026-10-23T17:00:00.000Z"
+        );
         assert_eq!(json["stats"]["avgIntervalDays"], 6.2);
     }
 
@@ -317,7 +320,10 @@ mod tests {
         let status = CodexResetsStatus::from_wire(parsed.data);
 
         let scheduled = status.scheduled_reset.expect("scheduled reset");
-        assert_eq!(scheduled.scheduled_for.as_deref(), Some("2026-10-25T01:00:00.000Z"));
+        assert_eq!(
+            scheduled.scheduled_for.as_deref(),
+            Some("2026-10-25T01:00:00.000Z")
+        );
         assert_eq!(scheduled.source.kind, "x_post");
         let watch = status.active_watch.expect("watch");
         assert_eq!(watch.reset_chance_percent, Some(60));

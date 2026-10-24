@@ -33,7 +33,9 @@ describe("forceRefreshCodexResets", () => {
     await forceRefreshCodexResets(queryClient);
 
     expect(subscriptionApi.getCodexResetsStatus).not.toHaveBeenCalled();
-    expect(queryClient.getQueryData(subscriptionKeys.codexResets())).toBeUndefined();
+    expect(
+      queryClient.getQueryData(subscriptionKeys.codexResets()),
+    ).toBeUndefined();
   });
 
   it("设置还没读到时同样跳过（功能默认关）", async () => {
@@ -52,8 +54,8 @@ describe("forceRefreshCodexResets", () => {
     await forceRefreshCodexResets(queryClient);
 
     expect(subscriptionApi.getCodexResetsStatus).toHaveBeenCalledWith(true);
-    expect(
-      queryClient.getQueryData(subscriptionKeys.codexResets()),
-    ).toEqual(status);
+    expect(queryClient.getQueryData(subscriptionKeys.codexResets())).toEqual(
+      status,
+    );
   });
 });
